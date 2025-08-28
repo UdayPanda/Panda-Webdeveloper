@@ -1,38 +1,40 @@
 # Frontend Developer Portfolio
 
-A modern, responsive portfolio website built with React, Tailwind CSS, and Vite. Perfect for showcasing your frontend development skills and full-stack projects.
+A modern, interactive portfolio website built with **React**, **Tailwind CSS**, **Vite**, and **Three.js**. Designed to showcase your frontend and full-stack projects with 3D visuals, smooth animations, and a professional dark theme.
 
 ## ✨ Features
 
-- **Modern Design**: Clean, professional design with dark theme and purple accent colors
-- **Responsive**: Fully responsive design that works on all devices
-- **Interactive**: Smooth animations, hover effects, and transitions
+- **Modern 3D Design**: Animated Three.js backgrounds and interactive visuals
+- **Responsive**: Fully responsive layout for all devices
+- **Interactive**: Framer Motion animations, hover effects, and transitions
 - **SEO Optimized**: Meta tags, Open Graph, and Twitter Card support
-- **Fast Loading**: Built with Vite for optimal performance
-- **Accessible**: WCAG compliant with proper focus states and semantic HTML
+- **Fast Loading**: Powered by Vite for optimal performance
+- **Accessible**: WCAG compliant with semantic HTML and focus states
 
 ## 🚀 Sections
 
-1. **Hero Section**: Animated text, call-to-action buttons, and social links
-2. **About Section**: Personal information, experience timeline, and downloadable CV
-3. **Skills Section**: Categorized skills with progress bars and animations
-4. **Projects Section**: Showcase of frontend and full-stack projects with filtering
-5. **Contact Section**: Contact form and contact information
-6. **Footer**: Social links, quick navigation, and additional information
+1. **Hero Section**: Animated text, 3D background, call-to-action, and social links
+2. **About Section**: Profile image with gradient hover, experience timeline, and downloadable CV
+3. **Skills Section**: Categorized skills with progress bars and animated levels
+4. **Projects Section**: Project showcase with filtering and live/GitHub links
+5. **Contact Section**: Contact form and information
+6. **Footer**: Social links and navigation
 
 ## 🛠️ Technologies Used
 
-- **React 19** - UI library
-- **Tailwind CSS 4** - Styling framework
-- **Vite** - Build tool and development server
-- **JavaScript ES6+** - Modern JavaScript features
+- **React 19**
+- **Tailwind CSS 4**
+- **Vite**
+- **Three.js** & **@react-three/fiber** (for 3D backgrounds)
+- **Framer Motion** (for animations)
+- **JavaScript ES6+**
 
 ## 📦 Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd portfolio
+   git clone https://github.com/UdayPanda/Panda-Webdeveloper.git
+   cd Panda-Webdeveloper
    ```
 
 2. **Install dependencies**
@@ -54,30 +56,18 @@ A modern, responsive portfolio website built with React, Tailwind CSS, and Vite.
 
 ### 1. Personal Information
 
-Update the following files with your personal information:
+Update these files with your info:
 
-#### Hero Section (`src/components/Hero.jsx`)
-- Change "Your Name" to your actual name
-- Update the animated text array with your roles
-- Replace social media URLs with your actual profiles
-- Update the description text
-
-#### About Section (`src/components/About.jsx`)
-- Replace "YP" placeholder with your initials or profile image
-- Update the about text and experience timeline
-- Change the CV download link
-- Update experience details and dates
-
-#### Contact Section (`src/components/Contact.jsx`)
-- Update email address
-- Change location and availability
-- Update social media links
+- **Hero Section:** `src/components/User/Hero.jsx`
+- **About Section:** `src/components/User/About.jsx`
+- **Contact Section:** `src/components/Contact.jsx`
+- **Profile Image:** Place your image in `src/assets/` and update the import path.
 
 ### 2. Projects
 
 Edit the projects array in `src/components/Projects.jsx`:
 
-```javascript
+```js
 const projects = [
   {
     id: 1,
@@ -98,13 +88,13 @@ const projects = [
 
 Update the skills in `src/components/Skills.jsx`:
 
-```javascript
+```js
 const skillCategories = {
   frontend: {
     title: 'Frontend Development',
     skills: [
       { name: 'React', level: 95, icon: '⚛️' },
-      // Add your skills with proficiency levels
+      // Add your skills
     ]
   }
   // Add more categories...
@@ -113,46 +103,40 @@ const skillCategories = {
 
 ### 4. Colors and Theme
 
-The portfolio uses a purple theme. To change colors:
-
-1. **Primary Colors**: Update purple colors in `src/index.css`
-2. **Background**: Modify the gradient in `src/App.jsx`
-3. **Accent Colors**: Change purple-400, purple-600, etc. throughout components
+- **Primary Colors:** Edit in `src/index.css` or Tailwind config
+- **Background:** Update gradients in `src/App.jsx`
+- **Accent Colors:** Change purple-400, purple-600, etc. in components
 
 ### 5. SEO and Meta Tags
 
-Update `index.html` with your information:
-- Title and description
-- Open Graph and Twitter Card images
-- Canonical URL
-- Keywords
+Edit `index.html`:
+- Title, description, Open Graph/Twitter images, canonical URL, keywords
 
 ### 6. Images and Assets
 
-1. **Profile Image**: Replace the placeholder in About section
-2. **Project Images**: Add your project screenshots
-3. **Favicon**: Replace `/vite.svg` with your own favicon
-4. **Social Media Images**: Create and add og-image.jpg and twitter-image.jpg
+- **Profile Image:** Place in `src/assets/`
+- **Project Images:** Add screenshots to `src/assets/`
+- **Favicon:** Replace `/vite.svg` with your favicon in `public/`
+- **Social Media Images:** Add `og-image.jpg` and `twitter-image.jpg` in `public/`
 
-## �� Responsive Design
+## 📱 Responsive Design
 
-The portfolio is fully responsive with breakpoints:
-- **Mobile**: < 640px
-- **Tablet**: 640px - 1024px
-- **Desktop**: > 1024px
+- Mobile: `< 640px`
+- Tablet: `640px - 1024px`
+- Desktop: `> 1024px`
 
 ## 🎯 Performance Optimization
 
-- Images are optimized and lazy-loaded
-- CSS is purged in production
-- JavaScript is minified and bundled
-- Fonts are optimized for web
+- Optimized and lazy-loaded images
+- Purged CSS in production
+- Minified and bundled JS
+- Web-optimized fonts
 
 ## 🔧 Development
 
-### Available Scripts
+### Scripts
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start dev server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
@@ -161,10 +145,12 @@ The portfolio is fully responsive with breakpoints:
 
 ```
 src/
+├── assets/
 ├── components/
 │   ├── Navbar.jsx
-│   ├── Hero.jsx
-│   ├── About.jsx
+│   ├── User/
+│   │   ├── Hero.jsx
+│   │   ├── About.jsx
 │   ├── Skills.jsx
 │   ├── Projects.jsx
 │   ├── Contact.jsx
@@ -177,33 +163,32 @@ src/
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
+1. Push code to GitHub
+2. Connect repo to Vercel
+3. Deploy
 
 ### Netlify
-1. Build the project: `npm run build`
-2. Upload the `dist` folder to Netlify
-3. Configure build settings if needed
+1. Build: `npm run build`
+2. Upload `dist` to Netlify
 
 ### GitHub Pages
-1. Add `"homepage": "https://yourusername.github.io/portfolio"` to package.json
-2. Install gh-pages: `npm install --save-dev gh-pages`
-3. Add deploy script: `"deploy": "gh-pages -d dist"`
+1. Add `"homepage": "https://yourusername.github.io/portfolio"` to `package.json`
+2. Install: `npm install --save-dev gh-pages`
+3. Add: `"deploy": "gh-pages -d dist"` to scripts
 4. Run: `npm run build && npm run deploy`
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+Open source under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions welcome! Please open a Pull Request.
 
 ## 📞 Support
 
-If you have any questions or need help customizing the portfolio, please open an issue on GitHub.
+For help or questions, open an issue on GitHub.
 
 ---
 
-**Made with ❤️ using React, Tailwind CSS, and Vite**
+**Made with ❤️ using React, Tailwind CSS, Three.js, and Vite**
