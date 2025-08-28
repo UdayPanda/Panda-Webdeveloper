@@ -30,9 +30,30 @@ const EditProjects = () => {
     setIsEditable(false);
   };
 
+  const handleAddProject = () => {
+    if (!isEditable) setIsEditable(true);
+    const newProject = {
+      title: "",
+      category: "",
+      liveUrl: "",
+      githubUrl: "",
+      description: "",
+      technologies: [],
+      image: "",
+    };
+    setFormData([...formData, newProject]);
+  };
+
+  const handleDeleteProject = (e, index) => {
+    e.preventDefault();
+    const updatedArray = [...formData];
+    updatedArray.splice(index, 1);
+    setFormData(updatedArray);
+  };
+
   useEffect(() => {
-        if(!isEditable) setFormData(projects);
-      }, [projects, isEditable]);
+    if (!isEditable) setFormData(projects);
+  }, [projects, isEditable]);
 
   return (
     <section id="projects" className="sm:px-6 lg:px-8">
@@ -56,12 +77,21 @@ const EditProjects = () => {
             >
               {isEditable ? "Cancel" : "Edit"}
             </button>
+
+            {isEditable && (
+              <button
+                className="bg-purple-400 hover:bg-purple-500 text-white py-2 px-4 rounded w-[150px]"
+                onClick={handleAddProject}
+              >
+                Add Project
+              </button>
+            )}
           </div>
 
           {formData?.map((proj, index) => (
             <div
               key={proj.id || index}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 border border-gray-700 rounded-lg bg-slate-800"
+              className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 border border-gray-700 rounded-lg bg-slate-800"
             >
               <div>
                 <label className="block text-orange-500 text-sm font-bold mb-2">
@@ -167,6 +197,29 @@ const EditProjects = () => {
                 />
               </div>
 
+              <div className="col-span-full flex justify-end">
+                <button
+                  className={`${
+                    isEditable ? "" : "hidden"
+                  } absolute top-4 right-4 hover:text-red-500 text-red-400 cursor-pointer`}
+                  onClick={(e) => handleDeleteProject(e, index)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-7 0h10"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           ))}
 
@@ -174,12 +227,11 @@ const EditProjects = () => {
             type="submit"
             className={`${
               isEditable ? "" : "hidden"
-            } absolute top-0 right-32 bg-purple-400 hover:bg-purple-500 text-white py-2 px-4 rounded`}
+            } absolute top-0 right-72 bg-purple-400 hover:bg-purple-500 text-white py-2 px-4 rounded`}
           >
             Save
           </button>
         </form>
-
       </div>
     </section>
   );

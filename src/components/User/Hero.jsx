@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
-// import { Canvas } from "@react-three/fiber";
-// import { OrbitControls, MeshWobbleMaterial } from "@react-three/drei";
 
 const Hero = () => {
   const [currentText, setCurrentText] = useState(0);
@@ -46,28 +44,6 @@ const Hero = () => {
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
-
-      {/* <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 6] }}>
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[5, 5, 5]} intensity={1} />
-          <mesh>
-            <sphereGeometry args={[1.8, 64, 64]} />
-            <MeshWobbleMaterial
-              color="#a78bfa"
-              factor={0.7} // intensity of wobble
-              speed={1.5} // speed of wobble
-              wireframe={false}
-            />
-          </mesh>
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={1.2}
-          />
-        </Canvas>
-      </div> */}
 
       {/* Main content */}
 
@@ -149,11 +125,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-purple-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-purple-400 rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div> */}
     </section>
   );
 };

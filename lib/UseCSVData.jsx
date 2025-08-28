@@ -1,7 +1,7 @@
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
 
-export default function useCsvData(fileName) {
+export function UseCSVData(fileName) {
   const [data, setData] = useState([]);
 
   useEffect(() => {

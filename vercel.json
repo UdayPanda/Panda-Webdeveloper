@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/controlpanel",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/controlpanel/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

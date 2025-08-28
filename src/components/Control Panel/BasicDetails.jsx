@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
+import { GenerateText } from "../../genAI/GenerateText";
 
 const BasicDetails = () => {
   const [isEditable, setIsEditable] = useState(false);
 
-  const { profile, setProfile } = useContext(ProfileContext);
+  const { profile, setProfile, experience, skills, projects } = useContext(ProfileContext);
 
   const [formData, setFormData] = useState(profile);
+
+  const [loading, setLoading] = useState({});
 
   const handleEditClick = (e) => {
     e.preventDefault();
@@ -25,6 +28,14 @@ const BasicDetails = () => {
     await setProfile(formData);
     setIsEditable(false);
   };
+
+  const handleGenerateWithAI = async (e, context) => {
+    setLoading((prev)=> ({...prev, [context]: true}));
+    e.preventDefault();
+    const responseFromGenAI = await GenerateText(context, profile, skills, experience, projects);
+    setFormData((prev) => ({ ...prev, [context]: responseFromGenAI }));
+    setLoading((prev)=> ({...prev, [context]: false}));
+  }
 
   useEffect(() => {
         if(!isEditable) setFormData(profile);
@@ -224,7 +235,7 @@ const BasicDetails = () => {
           />
         </div>
 
-        <div className="mb-4 col-span-2">
+        <div className="relative mb-4 col-span-2">
           <label
             htmlFor="description"
             className="block text-orange-500 text-sm font-bold mb-2"
@@ -239,9 +250,15 @@ const BasicDetails = () => {
             onChange={handleChange}
             disabled={!isEditable}
           ></textarea>
+          <div 
+          title="Edit with AI"
+          className={`${isEditable ? "" : "hidden"} absolute top-0 right-0 text-xl cursor-pointer`}
+          onClick={(e) => handleGenerateWithAI(e,"description")}
+          >{loading["description"] ? 
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div> : "✨"}</div>
         </div>
 
-        <div className="col-span-2">
+        <div className="relative col-span-2">
           <label
             htmlFor="about"
             className="block text-orange-500 text-sm font-bold mb-2"
@@ -256,6 +273,12 @@ const BasicDetails = () => {
             onChange={handleChange}
             disabled={!isEditable}
           ></textarea>
+          <div 
+          title="Edit with AI"
+          className={`${isEditable ? "" : "hidden"} absolute top-0 right-0 text-xl cursor-pointer`}
+          onClick={(e) => handleGenerateWithAI(e,"about")}
+          >{loading["about"] ? 
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div> : "✨"}</div>
         </div>
 
         <button
